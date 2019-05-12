@@ -20,23 +20,23 @@ interface IAddress {
 
 class Previsto {
 
-    async createContact(contact: IContact, twoFaToken?: string): Promise<IContact> {
+    public async createContact(contact: IContact, twoFaToken?: string): Promise<IContact> {
         return {
             id: ''
         };
     }
 
-    async createAgreement(agreement: IAgreement, twoFaToken?: string): Promise<IAgreement> {
+    public async createAgreement(agreement: IAgreement, twoFaToken?: string): Promise<IAgreement> {
         return {
             id: ''
         };
     }
 
-    async requestTwoFaToken(phone: string) {
-
+    public async requestTwoFaToken(phone: string) {
+        console.log('Requests token');
     }
 
-    async searchAddress(query: string): Promise<IAddress[]> {
+    public async searchAddress(query: string): Promise<IAddress[]> {
         return [];
     }
 }

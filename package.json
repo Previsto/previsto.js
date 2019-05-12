@@ -1,5 +1,5 @@
 {
-  "name": "previsto-node",
+  "name": "previsto",
   "version": "1.0.0",
   "description": "Node.js library for the Previsto API.",
   "main": "lib/index.js",

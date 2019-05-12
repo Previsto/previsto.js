@@ -23,40 +23,40 @@ class Previsto {
 
     public async createContact(contact: IContact, twoFaToken: string): Promise<IContact> {
         return fetch(`${this.serviceUrl}/contacts`, {
+            body: JSON.stringify(contact),
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'X-Auth-Token': this.apiKey,
-                'X-2FA-Token': twoFaToken
+                'X-2FA-Token': twoFaToken,
+                'X-Auth-Token': this.apiKey
             },
-            method: 'POST',
-            body: JSON.stringify(contact)
+            method: 'POST'
         }).then(res => res.json())
-            .then(res => res.map((contact: IContact) => contact));
+            .then(res => res.map((result: IContact) => result));
     }
 
     public async createAgreement(agreement: IAgreement, twoFaToken: string): Promise<IAgreement> {
         return fetch(`${this.serviceUrl}/agreements`, {
+            body: JSON.stringify(agreement),
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'X-Auth-Token': this.apiKey,
-                'X-2FA-Token': twoFaToken
+                'X-2FA-Token': twoFaToken,
+                'X-Auth-Token': this.apiKey
             },
-            method: 'POST',
-            body: JSON.stringify(agreement)
+            method: 'POST'
         }).then(res => res.json())
-            .then(res => res.map((contact: IAgreement) => contact));
+            .then(res => res.map((result: IAgreement) => result));
     }
 
     public async requestTwoFaToken(phone: string) {
         return fetch(`${this.serviceUrl}/accounts/actions/sendTwoFactorToken`, {
+            body: JSON.stringify({ phone }),
             headers: {
                 'Content-Type': 'application/json',
                 'X-Auth-Token': this.apiKey
             },
-            method: 'POST',
-            body: JSON.stringify({phone:phone})
+            method: 'POST'
         }).then(res => res.json());
     }
 

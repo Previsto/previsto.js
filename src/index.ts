@@ -25,8 +25,8 @@ class Previsto {
     return fetch(`${this.serviceUrl}/contacts`, {
       body: JSON.stringify(contact),
       headers: {
-        'Accept': 'application/json',
-        'Authorization': this.basicAuth(),
+        Accept: 'application/json',
+        Authorization: this.basicAuth(),
         'Content-Type': 'application/json',
         'X-2FA-Token': twoFaToken,
       },
@@ -40,10 +40,10 @@ class Previsto {
     return fetch(`${this.serviceUrl}/agreements`, {
       body: JSON.stringify(agreement),
       headers: {
-        'Accept': 'application/json',
-        'Authorization': this.basicAuth(),
+        Accept: 'application/json',
+        Authorization: this.basicAuth(),
         'Content-Type': 'application/json',
-        'X-2FA-Token': twoFaToken
+        'X-2FA-Token': twoFaToken,
       },
       method: 'POST',
     })
@@ -55,8 +55,8 @@ class Previsto {
     return fetch(`${this.serviceUrl}/accounts/actions/sendTwoFactorToken`, {
       body: JSON.stringify({ phone }),
       headers: {
-        'Authorization': this.basicAuth(),
-        'Content-Type': 'application/json'
+        Authorization: this.basicAuth(),
+        'Content-Type': 'application/json',
       },
       method: 'POST',
     }).then(res => res.json());
@@ -65,9 +65,9 @@ class Previsto {
   public async searchAddress(query: string, countryCode: string): Promise<IAddress[]> {
     return fetch(`${this.serviceUrl}/addresses?preferredCountryCode=${countryCode}&q=${encodeURIComponent(query)}`, {
       headers: {
-        'Accept': 'application/json',
-        'Authorization': this.basicAuth(),
-        'Content-Type': 'application/json'
+        Accept: 'application/json',
+        Authorization: this.basicAuth(),
+        'Content-Type': 'application/json',
       },
     })
       .then(res => res.json())

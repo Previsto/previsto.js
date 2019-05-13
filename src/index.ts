@@ -62,8 +62,16 @@ class Previsto {
     }).then(res => res.json());
   }
 
-  public async searchAddress(query: string): Promise<IAddress[]> {
-    return [];
+  public async searchAddress(query: string, countryCode: string): Promise<IAddress[]> {
+    return fetch(`${this.serviceUrl}/addresses?preferredCountryCode=${countryCode}&q=${encodeURIComponent(query)}`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'X-Auth-Token': this.apiKey,
+      },
+    })
+      .then(res => res.json())
+      .then(res => res.map((result: IAddress[]) => result));
   }
 }
 

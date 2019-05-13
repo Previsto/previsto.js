@@ -25,10 +25,10 @@ class Previsto {
     return fetch(`${this.serviceUrl}/contacts`, {
       body: JSON.stringify(contact),
       headers: {
-        Accept: 'application/json',
+        'Accept': 'application/json',
+        'Authorization': this.basicAuth(),
         'Content-Type': 'application/json',
         'X-2FA-Token': twoFaToken,
-        'X-Auth-Token': this.apiKey,
       },
       method: 'POST',
     })
@@ -40,10 +40,10 @@ class Previsto {
     return fetch(`${this.serviceUrl}/agreements`, {
       body: JSON.stringify(agreement),
       headers: {
-        Accept: 'application/json',
+        'Accept': 'application/json',
+        'Authorization': this.basicAuth(),
         'Content-Type': 'application/json',
-        'X-2FA-Token': twoFaToken,
-        'X-Auth-Token': this.apiKey,
+        'X-2FA-Token': twoFaToken
       },
       method: 'POST',
     })
@@ -55,8 +55,8 @@ class Previsto {
     return fetch(`${this.serviceUrl}/accounts/actions/sendTwoFactorToken`, {
       body: JSON.stringify({ phone }),
       headers: {
-        'Content-Type': 'application/json',
-        'X-Auth-Token': this.apiKey,
+        'Authorization': this.basicAuth(),
+        'Content-Type': 'application/json'
       },
       method: 'POST',
     }).then(res => res.json());
@@ -65,14 +65,18 @@ class Previsto {
   public async searchAddress(query: string, countryCode: string): Promise<IAddress[]> {
     return fetch(`${this.serviceUrl}/addresses?preferredCountryCode=${countryCode}&q=${encodeURIComponent(query)}`, {
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'X-Auth-Token': this.apiKey,
+        'Accept': 'application/json',
+        'Authorization': this.basicAuth(),
+        'Content-Type': 'application/json'
       },
     })
       .then(res => res.json())
       .then(res => res.map((result: IAddress[]) => result));
   }
+
+  private basicAuth() {
+    return `Basic ${btoa(this.apiKey + ':')}`;
+  }
 }
 
-export const previsto = new Previsto();
+const previsto = new Previsto();

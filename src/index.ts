@@ -22,8 +22,7 @@ interface IOptions {
 }
 
 class Previsto {
-
-  constructor(public apiKey: string, private options = {serviceUrl: 'https://api.previsto.io'}) {}
+  constructor(public apiKey: string, private options = { serviceUrl: 'https://api.previsto.io' }) {}
 
   public async createContact(contact: IContact, twoFaToken: string): Promise<IContact> {
     return fetch(`${this.options.serviceUrl}/contacts`, {
@@ -67,13 +66,16 @@ class Previsto {
   }
 
   public async searchAddress(query: string, countryCode: string): Promise<IAddress[]> {
-    return fetch(`${this.options.serviceUrl}/addresses?preferredCountryCode=${countryCode}&q=${encodeURIComponent(query)}`, {
-      headers: {
-        Accept: 'application/json',
-        Authorization: this.basicAuth(),
-        'Content-Type': 'application/json',
+    return fetch(
+      `${this.options.serviceUrl}/addresses?preferredCountryCode=${countryCode}&q=${encodeURIComponent(query)}`,
+      {
+        headers: {
+          Accept: 'application/json',
+          Authorization: this.basicAuth(),
+          'Content-Type': 'application/json',
+        },
       },
-    })
+    )
       .then(res => res.json())
       .then(res => res.map((result: IAddress[]) => result));
   }

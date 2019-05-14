@@ -1,6 +1,6 @@
 # previsto.js
 
-This library is a small library for using the Previsto Api on public websites. It is designed to be tiny and without any dependencies. It also only exposes methods that are suitable for the public APIKey:
+This library is a small library for using the Previsto Api on public websites. It is designed to be tiny and without any dependencies. It also only exposes methods that are suitable for the [public APIKey](https://docs.previsto.com/help/integration-til-previsto/api-keys):
 * Create Contact
 * Create agreement
 * Request 2 factor token

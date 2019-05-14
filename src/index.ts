@@ -17,12 +17,16 @@ interface IAddress {
   village: string;
 }
 
+interface IOptions {
+  serviceUrl: string;
+}
+
 class Previsto {
-  public apiKey: string = '';
-  private serviceUrl = 'https://api.previsto.io';
+
+  constructor(public apiKey: string, private options = {serviceUrl: 'https://api.previsto.io'}) {}
 
   public async createContact(contact: IContact, twoFaToken: string): Promise<IContact> {
-    return fetch(`${this.serviceUrl}/contacts`, {
+    return fetch(`${this.options.serviceUrl}/contacts`, {
       body: JSON.stringify(contact),
       headers: {
         Accept: 'application/json',
@@ -37,7 +41,7 @@ class Previsto {
   }
 
   public async createAgreement(agreement: IAgreement, twoFaToken: string): Promise<IAgreement> {
-    return fetch(`${this.serviceUrl}/agreements`, {
+    return fetch(`${this.options.serviceUrl}/agreements`, {
       body: JSON.stringify(agreement),
       headers: {
         Accept: 'application/json',
@@ -52,7 +56,7 @@ class Previsto {
   }
 
   public async requestTwoFaToken(phone: string) {
-    return fetch(`${this.serviceUrl}/accounts/actions/sendTwoFactorToken`, {
+    return fetch(`${this.options.serviceUrl}/accounts/actions/sendTwoFactorToken`, {
       body: JSON.stringify({ phone }),
       headers: {
         Authorization: this.basicAuth(),
@@ -63,7 +67,7 @@ class Previsto {
   }
 
   public async searchAddress(query: string, countryCode: string): Promise<IAddress[]> {
-    return fetch(`${this.serviceUrl}/addresses?preferredCountryCode=${countryCode}&q=${encodeURIComponent(query)}`, {
+    return fetch(`${this.options.serviceUrl}/addresses?preferredCountryCode=${countryCode}&q=${encodeURIComponent(query)}`, {
       headers: {
         Accept: 'application/json',
         Authorization: this.basicAuth(),
@@ -78,5 +82,3 @@ class Previsto {
     return `Basic ${btoa(this.apiKey + ':')}`;
   }
 }
-
-const previsto = new Previsto();

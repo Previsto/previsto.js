@@ -1,7 +1,7 @@
 {
-  "name": "previsto",
+  "name": "@previsto/public",
   "version": "1.0.6",
-  "description": "Node.js library for the Previsto API.",
+  "description": "Previsto Javascript library for use on public sites.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -27,7 +27,7 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Previsto/previsto-node/issues"
+    "url": "https://github.com/Previsto/previsto.js/issues"
   },
   "homepage": "https://github.com/Previsto/previsto.js#readme",
   "devDependencies": {

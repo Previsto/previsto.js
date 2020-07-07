@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Previsto/previsto-node.git"
+    "url": "git+https://github.com/Previsto/previsto.js.git"
   },
   "keywords": [],
   "author": "",
@@ -29,7 +29,7 @@
   "bugs": {
     "url": "https://github.com/Previsto/previsto-node/issues"
   },
-  "homepage": "https://github.com/Previsto/previsto-node#readme",
+  "homepage": "https://github.com/Previsto/previsto.js#readme",
   "devDependencies": {
     "prettier": "^1.17.0",
     "tslint": "^5.16.0",
